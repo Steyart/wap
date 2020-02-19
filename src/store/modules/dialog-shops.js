@@ -195,74 +195,14 @@ const actions = {
     },
     setDialogGoods({ commit, rootState }, o) {
         loadingInstance = Loading.service({ target: "body", text: "加载中……" })
-        apiDialogShops.getShops(o).then((e) => {
-            let res = {
-                "data": [
-                    {
-                        "shop_name": "农联自营",
-                        "shop_logo": "",
-                        "ru_id": "0"
-                    },
-                    {
-                        "shop_name": "龙祥果业",
-                        "shop_logo": "https://oss.nlyz365.com/images/seller/seller_logo/seller_logo2942.JPG?x-oss-process=image/resize,m_lfit,w_100,h_100",
-                        "ru_id": "2942"
-                    },
-                    {
-                        "shop_name": "成都天一绿科生态农业有限公司",
-                        "shop_logo": "",
-                        "ru_id": "2908"
-                    },
-                    {
-                        "shop_name": "成都市璇祺商贸有限公司",
-                        "shop_logo": "https://oss.nlyz365.com/images/seller/seller_logo/seller_logo2762.jpg?x-oss-process=image/resize,m_lfit,w_100,h_100",
-                        "ru_id": "2762"
-                    },
-                    {
-                        "shop_name": "小龙蔬菜",
-                        "shop_logo": "",
-                        "ru_id": "2994"
-                    },
-                    {
-                        "shop_name": "李哥连藕",
-                        "shop_logo": "",
-                        "ru_id": "2998"
-                    },
-                    {
-                        "shop_name": "邛崃市盛丰源家庭农场",
-                        "shop_logo": "",
-                        "ru_id": "3000"
-                    },
-                    {
-                        "shop_name": "老晋辣椒批发",
-                        "shop_logo": "",
-                        "ru_id": "3003"
-                    },
-                    {
-                        "shop_name": "河北山药产地直销",
-                        "shop_logo": "",
-                        "ru_id": "3014"
-                    },
-                    {
-                        "shop_name": "高原红土豆批发pdl",
-                        "shop_logo": "https://oss.nlyz365.com/b2b/wap/wxbd23b95c07d4b7cb0606ad7d12a7501a.png?x-oss-process=image/resize,m_lfit,w_100,h_100",
-                        "ru_id": "3018"
-                    }
-                ],
-                "total":10,
-                "msg": "已获取数据",
-                "code": 0
-            };
-
-            let list  = actions.setNewShops(res.data),
-                total = res.data.length;
+        apiDialogShops.getShops(o).then(({data:{ store , total }}) => {
+            let list  = actions.setNewShops(store);
             commit(SET_DIALOG_SHOPS, {
                 rootState,
                 modulesIndex: o.modulesIndex,
                 list,
                 total
             })
-            
             commit(ON_OFF_DIALOG_SHOPS, o)
             setTimeout(() => {
                 loadingInstance.close()
@@ -297,6 +237,7 @@ const actions = {
             rootState
         })
     },
+    /* 转换对象 */
     setNewShops(res){
         let list = [];
         res.map((v,k)=>{

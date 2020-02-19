@@ -21,7 +21,8 @@ module.exports = {
             selectGoodsId:[],
             selectShopsId:[],
             marginSize:'0',
-            bgColor:""
+            bgColor:"",
+            isMarginStyleSel: ""
         },
         typeTag: [{
             key: "0",
@@ -83,7 +84,6 @@ module.exports = {
         typeSelList: [],
         isRadiusStyleSel: "0",
         isTextStyleSel: "0",
-        isMarginStyleSel: "0",
         tagSelList: [],
 
         isSizeSel: "0",

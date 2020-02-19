@@ -23,8 +23,8 @@ function getShops(o, oF){
  * @param {Object} o - 请求信息 
  */
 function getShopsSel(o){
-    return axios.post(getUrl(`console&c=view&a=storeList`),qs.stringify({
-        ids :o.selectShopsId || '',
+    return axios.post(getUrl(`console&c=${window.apiAuthority}&a=storeList`),({
+        ids :o.selectShopsId || [],
         display_goods_number:o.number,
         region_id:o.region_id,
         category_id:o.category_id,

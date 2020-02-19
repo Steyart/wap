@@ -10,13 +10,13 @@ module.exports = {
             selectGoodsId:[],
             selectShopsId:[],
             marginSize:'0',
-            bgColor:""
+            bgColor:"",
+            isMarginStyleSel: ""
         },
         isStyleSel: "0",
         typeSelList: ["0","1","2","3"],
         isRadiusStyleSel: "0",
         isTextStyleSel: "0",
-        isMarginStyleSel: "0",
         tagSelList: ["0","1","2","3","4"],
         
         isSizeSel: "0",

@@ -60,7 +60,7 @@
                         type="number" 
                         size="small"
                         min="0"
-                        v-model="marginSize"
+                        v-model="isMarginStyleSel"
                         placeholder="0px">
                     </ec-input>
                 </div>
@@ -293,12 +293,12 @@ export default {
             })
             return aShowTags
         },
-        marginSize: {
+        isMarginStyleSel: {
             get() {
-                return this.data.marginSize
+                return this.data.allValue.isMarginStyleSel
             },
             set(value) {
-                this.updateTitleText('marginSize', Number(value))
+                this.updateTitleText('isMarginStyleSel', Number(value))
             }
         },
         bgColor: {

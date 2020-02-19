@@ -2,45 +2,48 @@
     <section>
         <div :style="{'background-color':oPosition.backgroundColor}">
             <div v-if="data.isStyleSel == '0'" class="sort-box">
-                <div class="dflex space-between align-items screen-box" v-if="!preview">
+                <div class="dflex space-between align-items screen-box" v-if="preview">
                     <div class="dflex align-items">
-                        <span>品类</span>
+                        <span>{{pinlei_name}}</span>
                         <svg t="1581664921213" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1105" width="14" height="14"><path d="M163.446154 275.692308h697.107692c19.692308 0 33.476923 25.6 17.723077 43.323077L537.6 736.492308c-11.815385 15.753846-37.415385 15.753846-49.230769 0L143.753846 319.015385c-13.784615-17.723077-1.969231-43.323077 19.692308-43.323077z" p-id="1106"></path></svg>
                     </div>
                     <div class="dflex align-items">
-                        <span>全城</span>
+                        <span>{{quancheng_name}}</span>
                         <svg t="1581664921213" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1105" width="14" height="14"><path d="M163.446154 275.692308h697.107692c19.692308 0 33.476923 25.6 17.723077 43.323077L537.6 736.492308c-11.815385 15.753846-37.415385 15.753846-49.230769 0L143.753846 319.015385c-13.784615-17.723077-1.969231-43.323077 19.692308-43.323077z" p-id="1106"></path></svg>
                     </div>
                     <div class="dflex align-items">
-                        <span>排序</span>
+                        <span>{{paixu_name}}</span>
                         <svg t="1581664921213" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1105" width="14" height="14"><path d="M163.446154 275.692308h697.107692c19.692308 0 33.476923 25.6 17.723077 43.323077L537.6 736.492308c-11.815385 15.753846-37.415385 15.753846-49.230769 0L143.753846 319.015385c-13.784615-17.723077-1.969231-43.323077 19.692308-43.323077z" p-id="1106"></path></svg>
                     </div>
                 </div>
                 <div class="dflex space-between align-items screen-box" v-else>
                     <div :class="['dflex align-items',{'down-up':pinlei_show}]" @click="pinlei">
-                        <span>品类</span>
+                        <span>{{pinlei_name}}</span>
                         <svg t="1581664921213" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1105" width="14" height="14"><path d="M163.446154 275.692308h697.107692c19.692308 0 33.476923 25.6 17.723077 43.323077L537.6 736.492308c-11.815385 15.753846-37.415385 15.753846-49.230769 0L143.753846 319.015385c-13.784615-17.723077-1.969231-43.323077 19.692308-43.323077z" p-id="1106"></path></svg>
                     </div>
                     <div :class="['dflex align-items',{'down-up':quancheng_show}]" @click="quancheng">
-                        <span>全城</span>
+                        <span>{{quancheng_name}}</span>
                         <svg t="1581664921213" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1105" width="14" height="14"><path d="M163.446154 275.692308h697.107692c19.692308 0 33.476923 25.6 17.723077 43.323077L537.6 736.492308c-11.815385 15.753846-37.415385 15.753846-49.230769 0L143.753846 319.015385c-13.784615-17.723077-1.969231-43.323077 19.692308-43.323077z" p-id="1106"></path></svg>
                     </div>
                     <div :class="['dflex align-items',{'down-up':paixu_show}]" @click="paixu">
-                        <span>排序</span>
+                        <span>{{paixu_name}}</span>
                         <svg t="1581664921213" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1105" width="14" height="14"><path d="M163.446154 275.692308h697.107692c19.692308 0 33.476923 25.6 17.723077 43.323077L537.6 736.492308c-11.815385 15.753846-37.415385 15.753846-49.230769 0L143.753846 319.015385c-13.784615-17.723077-1.969231-43.323077 19.692308-43.323077z" p-id="1106"></path></svg>
                     </div>
                 </div>
                 <div class="pinlei-box" v-show="pinlei_show">
-                    <div class="pinlei-li" @click="pinleiPost(1)">毛菜</div>
-                    <div class="pinlei-li" @click="pinleiPost(2)">净菜</div>
+                    <div class="pinlei-li" @click="pinleiPost(1,'毛菜')">毛菜</div>
+                    <div class="pinlei-li" @click="pinleiPost(2,'净菜')">净菜</div>
+                </div>
+                <div class="quancheng-box" v-show="quancheng_show">
+                    <div class="quancheng-li" v-for="(addressItem,addressKey) in addressList" :key="addressKey" @click="quanchengPost(addressItem.id,addressItem.name)">{{addressItem.name}}</div>
                 </div>
                 <div class="paixu-box" v-show="paixu_show">
-                    <div class="paixu-li" @click="paixuPost(0)">推荐排序</div>
-                    <div class="paixu-li" @click="paixuPost(1)">销量优先</div>
+                    <div class="paixu-li" @click="paixuPost(0,'推荐排序')">推荐排序</div>
+                    <div class="paixu-li" @click="paixuPost(1,'销量优先')">销量优先</div>
                 </div>
             </div>
             
-            <div class="quick-screening dflex" v-if="preview">
+            <div class="quick-screening dflex" v-if="!preview">
                 <div v-if="isRecommendShop" @click="recommendShop">
                     推荐店铺
                 </div>
@@ -169,8 +172,13 @@ export default {
             quancheng_show:false,
             pinlei_show:false,
 
+            pinlei_name:'品类',
+            quancheng_name:'全城',
+            paixu_name:'排序',
+
             goodsLength:4,//店铺下推荐商品数量，默认为4
-            region_id:0,//地区id
+            addressList:[],//成都地址列表
+            region_id:332,//地区id
             category_id:0,//分类id  目前等同 次日到（毛菜）和 （及时达）净菜
             order:0,//排序方式 0- 默认  1-销量
             is_promote:0,//推荐店铺  1 推荐店铺 0 全部
@@ -211,6 +219,12 @@ export default {
                             : (this.prolist = [])
                     })
             }
+            this.$http.get(
+                this.url(`region&a=address&parent_id=322`),
+            )
+            .then(({ data: { addressList } }) => {
+                this.addressList = addressList;
+            })
         }, 100)
     },
     methods: {
@@ -265,7 +279,7 @@ export default {
                 this.pinlei_show = true;
             }
         },
-        pinleiPost(key){
+        pinleiPost(key,name){
             let data = {
                 number: this.goodsLength,
                 ids: this.selectShopsId || [],
@@ -276,8 +290,14 @@ export default {
             }
             this.order = 0;
             data.order = 0;
+            this.region_id = 0;
+            data.region_id = 0;
             this.category_id = key;
             data.category_id = key;
+            
+            this.pinlei_name = name;
+            this.quancheng_name = '全城';
+            this.paixu_name = '排序';
             this.getShopList(data);
         },
         /* 全城 */
@@ -291,19 +311,7 @@ export default {
             }
             this.pinlei_show = false;
         },
-        /* 排序 */
-        paixu() {
-            if(this.paixu_show){
-                this.paixu_show = false;
-            }else{
-                this.paixu_show = true;
-            }
-            this.quancheng_show = false;
-            this.pinlei_show = false;
-        },
-        paixuPost(key){
-
-
+        quanchengPost(key,name){
             let data = {
                 number: this.goodsLength,
                 ids: this.selectShopsId || [],
@@ -314,8 +322,45 @@ export default {
             }
             this.category_id = 0;
             data.category_id = 0;
+            this.region_id = key * 1;
+            data.region_id = key * 1;
+            this.order = 0;
+            data.order = 0;
+
+            this.pinlei_name = '品类';
+            this.quancheng_name = name;
+            this.paixu_name = '排序';
+            this.getShopList(data);
+        },
+        /* 排序 */
+        paixu() {
+            if(this.paixu_show){
+                this.paixu_show = false;
+            }else{
+                this.paixu_show = true;
+            }
+            this.quancheng_show = false;
+            this.pinlei_show = false;
+        },
+        paixuPost(key,name){
+            let data = {
+                number: this.goodsLength,
+                ids: this.selectShopsId || [],
+                region_id:this.region_id,
+                category_id:this.category_id,
+                order:this.order,
+                is_promote:this.is_promote,
+            }
+            this.category_id = 0;
+            data.category_id = 0;
+            this.region_id = 0;
+            data.region_id = 0;
             this.order = key;
             data.order = key;
+
+            this.pinlei_name = '品类';
+            this.quancheng_name = '全城';
+            this.paixu_name = name;
             this.getShopList(data);
         },
         /* 店铺详情 */
@@ -324,13 +369,17 @@ export default {
         },
         /* 商品详情 */
         getGoodUrl(id) {
-            return `${window.ROOT_URL}index.php?m=store&a=shop_info&id=${id}`
+            return `${window.ROOT_URL}index.php?m=goods&id=${id}`
         },
         /* 店铺列表 */
         getShopList(data){
+            this.paixu_show = false;
+            this.quancheng_show = false;
+            this.pinlei_show = false;
+
             this.$http.post(
                 this.url(`console&c=view&a=storeList`),
-                qs.stringify(data)
+                data
             )
             .then(({ data: { store } }) => {
                 store && store.length > 0
@@ -432,7 +481,8 @@ export default {
         },
 
         marginClass() {
-            let marginStyleSel = `${this.data.isMarginStyleSel}px 0`;
+            let marginStyleSel = `0 12px ${this.data.allValue.isMarginStyleSel || 0}px`;
+            console.log(marginStyleSel);
             return marginStyleSel
         },
         
@@ -473,14 +523,19 @@ export default {
 }
 .sort-box{
     position: relative;
-    .paixu-box,.pinlei-box{
+    .paixu-box,.pinlei-box,.quancheng-box{
         position: absolute;
         top: 41px;
         left: 0;
         padding: 0 12px;
         background-color: #fff;
         width: 100%;
-        .paixu-li,.pinlei-li{
+        
+        z-index: 10;
+        max-height: 300px;
+        overflow: auto;
+        border-bottom: 1px solid #eee;
+        .paixu-li,.pinlei-li,.quancheng-li{
             height: 40px;
             line-height: 40px;
         }

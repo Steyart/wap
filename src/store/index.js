@@ -71,14 +71,14 @@ const store = new Vuex.Store({
                     selectShopsId:[],
                     /* new data */
                     marginSize:'0',
-                    bgColor:""
+                    bgColor:"",
+                    isMarginStyleSel: "",
                 },
                 isStyleSel: "0",
                 isSizeSel: "1",
                 /* new data */
                 isRadiusStyleSel: "0",
                 isTextStyleSel: "0",
-                isMarginStyleSel: "0",
                 /* new data */
                 typeSelList: [
                     "0",
